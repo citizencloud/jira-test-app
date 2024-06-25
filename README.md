@@ -2,7 +2,7 @@
 
 ### What is it
 
-A very dumb jira plugin that generates a _summary_ of an issue based on the comment thread. Based on (this)[https://developer.atlassian.com/platform/forge/build-jira-comments-summarizer-with-openai/] tutorial.
+A very dumb jira plugin that generates a _summary_ of an issue based on the comment thread. Based on [this](https://developer.atlassian.com/platform/forge/build-jira-comments-summarizer-with-openai/) tutorial.
 
 ### Deploying
 
