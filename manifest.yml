@@ -1,0 +1,19 @@
+modules:
+  jira:issuePanel:
+    - key: smart-summarizer-hello-world-issue-panel
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: smart-summarizer
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/438687ce-6aa2-4e18-a9a4-2ca576121b50
