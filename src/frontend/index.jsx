@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import ForgeReconciler, { Text } from '@forge/react';
-import { invoke } from '@forge/bridge';
+import React, { useEffect, useState } from "react";
+import ForgeReconciler, { Text } from "@forge/react";
+import { invoke } from "@forge/bridge";
+
+function buildPrompt(commentData) {
+  const prompt =
+    "You are responsible for producing concice summaries of Jira issues based on an aggregation of comments. Summarize the following data: " +
+    commentData;
+  return prompt;
+}
+
+const summarizeCommentThread = async () => {
+  const commentsData = await invoke("getIssueComments");
+  if (commentsData) {
+    return await invoke("callOpenAI", {
+      prompt: buildPrompt(commentsData),
+    });
+  }
+};
 
 const App = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
-    invoke('getText', { example: 'my-invoke-variable' }).then(setData);
+    summarizeCommentThread().then(setData);
   }, []);
+
   return (
     <>
-      <Text>Hello world!</Text>
-      <Text>{data ? data : 'Loading...'}</Text>
+      <Text>{data ? data : "Generating summary..."}</Text>
     </>
   );
 };
@@ -18,5 +34,5 @@ const App = () => {
 ForgeReconciler.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

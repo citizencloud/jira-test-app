@@ -17,3 +17,10 @@ app:
   runtime:
     name: nodejs18.x
   id: ari:cloud:ecosystem::app/438687ce-6aa2-4e18-a9a4-2ca576121b50
+permissions:
+  scopes:
+    - read:jira-work
+  external:
+    fetch:
+      backend:
+        - "api.openai.com"
